@@ -1,0 +1,23 @@
+:root {
+  --color-primario: #242424;
+  --color-primario-darken: #151515;
+  --color-primario-lighten: #323232;
+  --color-primario-lighten-opacity: #32323244;
+  --color-secundario: #0c50f0;
+  --color-texto: #fff;
+
+  --color-musico-1: #242424;
+  --color-musico-2: #242424;
+
+  --border-radius: 6px;
+
+  --bg-image: url("") ;
+}
+
+body {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
