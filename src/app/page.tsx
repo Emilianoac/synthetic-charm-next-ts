@@ -51,7 +51,7 @@ async function Home() {
           (musicians.data.map( musico => (
             <div className="col-6 col-md-4 col-lg-3 mt-5" key={musico.name}>
               <article className="card-musico">
-                <Link href={`/musician/${musico.slug}`}>
+                <Link href={`/musicians/${musico.slug}`}>
                   <Image 
                     className="img-fluid"
                     style={{borderColor: musico.color}}
