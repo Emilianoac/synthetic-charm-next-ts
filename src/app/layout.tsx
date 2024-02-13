@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar/>
         <ImportBsJS/>
-        <div className="container my-5">
+        <div className="container my-4">
           {children}
         </div>
       </body>

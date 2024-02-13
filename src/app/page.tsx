@@ -52,7 +52,7 @@ async function Home() {
         <div className="row">
           {musicians.data && musicians.data.length > 0 ? 
             (musicians.data.map( musico => (
-              <div className="col-6 col-md-4 col-lg-3 mt-5" key={musico.name}>
+              <div className="col-6 col-md-4 col-lg-3 mb-5" key={musico.name}>
                 <article className="card-musico">
                   <Link href={`/musicians/${musico.slug}`}>
                     <Image 
