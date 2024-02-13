@@ -5,6 +5,7 @@ import type { Error } from "@/types/errors";
 import type { Musician } from "@/types/musician";
 import "./page.scss"
 import ErrorAlert from "@/components/ErrorAlert";
+import SetBackground from "@/components/utils/SetBackground";
 
 /**
  * Objeto que contiene los datos de los músicos el estado de error
@@ -45,33 +46,36 @@ async function getData(): Promise<Musician[] | null> {
 async function Home() {
   musicians.data = await getData()
   return (
-    <main className="galeria-musicos">
-      <div className="row">
-        {musicians.data && musicians.data.length > 0 ? 
-          (musicians.data.map( musico => (
-            <div className="col-6 col-md-4 col-lg-3 mt-5" key={musico.name}>
-              <article className="card-musico">
-                <Link href={`/musicians/${musico.slug}`}>
-                  <Image 
-                    className="img-fluid"
-                    style={{borderColor: musico.color}}
-                    width={600} 
-                    height={600} 
-                    src={musico.profileImage.url} 
-                    alt={musico.profileImage.name}
-                  />
-                  <h4 className="mt-3 fw-bold">{musico.name }</h4>
-                  <p className="small muted mt-1 mb-0">{ musico.musical_genre }</p>              
-                </Link>
-              </article> 
-            </div>
-            ))
-          ) 
-          : 
-          <ErrorAlert {...musicians.error}/>
-        }
-      </div>
-    </main>
+    <>
+      <SetBackground image="" color="#242424"/>
+      <main className="galeria-musicos">
+        <div className="row">
+          {musicians.data && musicians.data.length > 0 ? 
+            (musicians.data.map( musico => (
+              <div className="col-6 col-md-4 col-lg-3 mt-5" key={musico.name}>
+                <article className="card-musico">
+                  <Link href={`/musicians/${musico.slug}`}>
+                    <Image 
+                      className="img-fluid"
+                      style={{borderColor: musico.color}}
+                      width={600} 
+                      height={600} 
+                      src={musico.profileImage.url} 
+                      alt={musico.profileImage.name}
+                    />
+                    <h4 className="mt-3 fw-bold">{musico.name }</h4>
+                    <p className="small muted mt-1 mb-0">{ musico.musical_genre }</p>              
+                  </Link>
+                </article> 
+              </div>
+              ))
+            ) 
+            : 
+            <ErrorAlert statusCode={musicians.error.statusCode} message={musicians.error.message}/>
+          }
+        </div>
+      </main>
+    </>
   );
 }
 

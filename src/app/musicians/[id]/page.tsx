@@ -1,3 +1,4 @@
+import type { Metadata} from "next";
 import Image from "next/image";
 import axios, {AxiosError} from "axios";
 import type { Error } from "@/types/errors";
@@ -5,6 +6,7 @@ import type { Musician } from "@/types/musician";
 import "./page.scss"
 import ErrorAlert from "@/components/ErrorAlert";
 import MusicPlayer from "@/components/MusicPlayer";
+import SetBackground from "@/components/utils/SetBackground";
 
 /**
  * Objeto que contiene los datos de los músicos el estado de error.
@@ -42,13 +44,24 @@ async function getData(id : string): Promise<Musician | null> {
   return null
 }
 
+export async function generateMetadata({ params}: {params: {id: string}} ): Promise<Metadata> {
+  const id = params.id
+  musician.data = await getData(id)
+ 
+  return {
+    title: `${musician.data?.name} | Synthetic Charm`,
+    description: musician.data?.bio
+  }
+}
+
 export default async function MusicianProfile({params}: {params: {id: string}}) {
   musician.data = await getData(params.id)
-  
+
   return (
     <>
       {musician.data ?
         <div className="perfil-musico">
+          <SetBackground color={musician.data.color} image={musician.data.profileImage.url}/>
           <div className="perfil-musico__imagen">
             <h1 className="fw-bold text-uppercase mb-1">{musician.data.name}</h1>
             <p className="mb-3">{musician.data.musical_genre}</p>
@@ -98,12 +111,14 @@ export default async function MusicianProfile({params}: {params: {id: string}}) 
                   alt={musician.data.albums[0].title} 
                 />
               </div>
-              <MusicPlayer songs={musician.data.albums[0].songs}/>
+              <MusicPlayer 
+                songs={musician.data.albums[0].songs}
+              />
             </div>
           </div>
         </div>
       :
-      <ErrorAlert {... musician.error}/>
+        <ErrorAlert statusCode={musician.error.statusCode} message={musician.error.message}/>
       } 
     </>
   );
