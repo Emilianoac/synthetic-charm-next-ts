@@ -2,11 +2,14 @@
   "name": "next-ts",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "testUI": "vitest --ui"
   },
   "dependencies": {
     "axios": "^1.6.7",
@@ -21,10 +24,15 @@
     "sass": "^1.70.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.2.2",
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5"
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.4.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5",
+    "vitest": "^1.4.0"
   }
 }
