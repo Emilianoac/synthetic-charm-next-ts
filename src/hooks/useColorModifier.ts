@@ -3,7 +3,7 @@
  * @param color - El color a modificar en formato hexadecimal.
  * @param modifier - El valor de modificación.
  */
-function colorModifier(color: string, modifier: number): string {
+function useColorModifier(color: string, modifier: number): string {
 
   if (!/^#[0-9a-fA-F]{6}$/.test(color)) {
     throw new Error("El color proporcionado debe tener el siguiente formato: '#000000'.")
@@ -30,4 +30,4 @@ function colorModifier(color: string, modifier: number): string {
   return newColor
 }
 
-export {colorModifier}
+export {useColorModifier}
