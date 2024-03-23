@@ -1,7 +1,6 @@
-
 "use client"
 import { useEffect } from "react";
-import { colorModifier } from "@/composables/colorModifier";
+import { colorModifier } from "@/hooks/colorModifier";
 
 interface Props {
   color: string,
